@@ -1,0 +1,25 @@
+---
+- name: configure the web page
+  hosts: all
+  tasks:
+  - name: install httpd
+    yum: 
+     name: httpd
+     state: present
+
+  - name: copy the webpage
+    copy:
+     content: "hello world"
+     dest: /var/www/html/index.html
+
+  - name: restart the service
+    service:
+     name: httpd
+     state: restarted
+     enabled: true
+
+  - name: user add
+    user:
+     name: dell
+     state: present    
+
